@@ -32,6 +32,7 @@ public class SistemaControlVuelo {
         System.out.println("Información del ala:");
         System.out.println("Fabricante: " + fabricante);
         System.out.println("El modo actual es: " + modoActual);
+        System.out.println("El tipo de sistema es: " + tipoSistema);
     }
 
 }

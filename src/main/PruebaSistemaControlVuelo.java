@@ -9,7 +9,7 @@ public class PruebaSistemaControlVuelo {
         SistemaControlVuelo sistemaControlVuelo2 = new SistemaControlVuelo("Rockwell", 2, "piloto automático", 2);
         
         sistemaControlVuelo1.mostrarInformacion();
-    
+        sistemaControlVuelo2.mostrarInformacion();
     }
 
 

@@ -1,4 +1,4 @@
-package src.sistemaControlVuelo;
+package src.avion;
 
 public class SistemaControlVuelo {
     

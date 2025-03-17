@@ -1,9 +1,9 @@
 package src.main;
 
-import src.alas.Ala;
+import src.avion.Ala;
 import src.avion.Avion;
-import src.motorAvion.MotorAvion;
-import src.sistemaControlVuelo.SistemaControlVuelo;
+import src.avion.MotorAvion;
+import src.avion.SistemaControlVuelo;
 
 public class PruebaAvion {
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package src.main;
 
-import src.motorAvion.MotorAvion;
+import src.avion.MotorAvion;
 
 public class PruebaMotorAvion {
     

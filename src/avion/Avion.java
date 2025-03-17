@@ -1,9 +1,5 @@
 package src.avion;
 
-import src.motorAvion.MotorAvion;
-import src.sistemaControlVuelo.SistemaControlVuelo;
-import src.alas.Ala;
-
 public class Avion {
 
     // Atributos

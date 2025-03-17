@@ -1,4 +1,4 @@
-package src.alas;
+package src.avion;
 
 public class Ala {
 

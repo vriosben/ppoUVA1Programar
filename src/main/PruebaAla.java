@@ -1,6 +1,6 @@
 package src.main;
 
-import src.alas.Ala;
+import src.avion.Ala;
 
 public class PruebaAla {
     public static void main(String[] args) {

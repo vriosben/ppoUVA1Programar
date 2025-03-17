@@ -1,6 +1,6 @@
 package src.main;
 
-import src.sistemaControlVuelo.SistemaControlVuelo;
+import src.avion.SistemaControlVuelo;
 
 public class PruebaSistemaControlVuelo {
     

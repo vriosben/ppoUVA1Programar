@@ -1,4 +1,4 @@
-package src.motorAvion;
+package src.avion;
 
     // Atributos
 public class MotorAvion {

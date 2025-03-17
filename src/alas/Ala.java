@@ -14,18 +14,22 @@ public class Ala {
         this.tipoMaterial = tipoMaterial;
     }
 
+    //Getters
+    public double getEnvergadura() {
+        return envergadura;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getTipoMaterial() {
+        return tipoMaterial;
+    }
+
     // Método flap()
     public void flap() {
         System.out.println("El ala está realizando un flap.");
     }
-
-    // Método para mostrar información 
-    public void mostrarInformacion() {
-        System.out.println("Información del ala:");
-        System.out.println("Envergadura: " + envergadura + " metros");
-        System.out.println("Color: " + color);
-        System.out.println("Tipo de material: " + tipoMaterial);
-    }
-
 
 }

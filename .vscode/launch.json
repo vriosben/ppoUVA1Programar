@@ -4,7 +4,34 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "java",
+            "name": "PruebaAvion",
+            "request": "launch",
+            "mainClass": "src.main.PruebaAvion",
+            "projectName": "ppoUVA1Programar_90f0ce2b"
+        },
+        {
+            "type": "java",
+            "name": "PruebaSistemaControlVuelo",
+            "request": "launch",
+            "mainClass": "src.main.PruebaSistemaControlVuelo",
+            "projectName": "ppoUVA1Programar_90f0ce2b"
+        },
+        {
+            "type": "java",
+            "name": "PruebaMotorAvion",
+            "request": "launch",
+            "mainClass": "src.main.PruebaMotorAvion",
+            "projectName": "ppoUVA1Programar_90f0ce2b"
+        },
+        {
+            "type": "java",
+            "name": "PruebaAla",
+            "request": "launch",
+            "mainClass": "src.main.PruebaAla",
+            "projectName": "ppoUVA1Programar_90f0ce2b"
+        },
         {
             "type": "java",
             "name": "Current File",

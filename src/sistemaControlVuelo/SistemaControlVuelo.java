@@ -9,30 +9,37 @@ public class SistemaControlVuelo {
     private int modoActual;
 
     // Constructor
-    public SistemaControlVuelo(String fabricante, int numeroModos, String tipoSistema, int modoActual){
+    public SistemaControlVuelo(String fabricante, int numeroModos, String tipoSistema){
         this.fabricante = fabricante;
         this.numeroModos = numeroModos;
         this.tipoSistema = tipoSistema;
         this.modoActual = 1;
+    }
+ 
+    // Getters
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public int getNumeroModos() {
+        return numeroModos;
+    }
+
+    public String getTipoSistema() {
+        return tipoSistema;
+    }
+
+    public int getModoActual() {
+        return modoActual;
     }
 
     //Método para cambiar de modo
     public void cambiarModo(int nuevoModo) {
         if (nuevoModo > 0 && nuevoModo <= numeroModos) {
             modoActual = nuevoModo;
-            System.out.println("Modo cambiado a: " + modoActual);
+            System.out.println("Modo cambiado.");
         } else {
-            System.out.println("No se ha podido cambiar el modo");
+            System.out.println("No se ha podido cambiar el modo.");
         }
-
     }
-
-    // Método para mostrar información
-    public void mostrarInformacion() {
-        System.out.println("Información del ala:");
-        System.out.println("Fabricante: " + fabricante);
-        System.out.println("El modo actual es: " + modoActual);
-        System.out.println("El tipo de sistema es: " + tipoSistema);
-    }
-
 }

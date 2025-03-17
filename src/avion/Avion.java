@@ -6,6 +6,7 @@ import src.alas.Ala;
 
 public class Avion {
 
+    // Atributos
     private String marca;
     private String modelo;
     private MotorAvion motor;
@@ -14,7 +15,7 @@ public class Avion {
     private int numeroAsientos;
     private boolean entretenimiento; 
 
-    
+    // Constructor
     public Avion(String marca, String modelo, MotorAvion motor, SistemaControlVuelo sistemaControlVuelo, Ala[] alas, int numeroAsientos, boolean entretenimiento) {
         this.marca = marca;
         this.modelo = modelo;
@@ -25,22 +26,51 @@ public class Avion {
         this.entretenimiento = entretenimiento;
     }
 
+    // Getters
+    public String getMarca() {
+        return marca;
+    }
 
-    public void mostrarInformacion() {
-        System.out.println("=== Información del Avión ===");
-        System.out.println("Marca: " + marca);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Número de asientos: " + numeroAsientos);
-        System.out.println("Sistema de entretenimiento: " + (entretenimiento ? "Sí" : "No"));
+    public String getModelo() {
+        return modelo;
+    }
 
+    public MotorAvion getMotor() {
+        return motor;
+    }
 
-        motor.mostrarInformacion();
-        sistemaControlVuelo.mostrarInformacion();
+    public SistemaControlVuelo getSistemaControlVuelo() {
+        return sistemaControlVuelo;
+    }
 
-        for (int i = 0; i < alas.length; i++) {
-            System.out.println("\nAla " + (i + 1) + ":");
-            alas[i].mostrarInformacion();
-        }
+    public Ala[] getAlas() {
+        return alas;
+    }
+
+    public int getNumeroAsientos() {
+        return numeroAsientos;
+    }
+
+    public boolean isEntretenimiento() {
+        return entretenimiento;
+    }
+
+    // Metodos
+    public void encenderMotor() {
+        motor.encenderMotor();
+    }
+
+    public void apagarMotor() {
+        motor.apagarMotor();
+    }
+
+    public void cambiarModo(int nuevoModo) {
+        sistemaControlVuelo.cambiarModo(nuevoModo);
     }
     
+    public void flap() {
+        for (Ala ala : alas) {
+            ala.flap();
+        }
+    }
 }

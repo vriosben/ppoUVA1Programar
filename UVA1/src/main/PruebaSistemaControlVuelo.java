@@ -1,6 +1,6 @@
-package src.main;
+package UVA1.src.main;
 
-import src.avion.SistemaControlVuelo;
+import UVA1.src.avion.SistemaControlVuelo;
 
 public class PruebaSistemaControlVuelo {
     

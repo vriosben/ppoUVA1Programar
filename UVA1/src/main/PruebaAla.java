@@ -1,6 +1,6 @@
-package src.main;
+package UVA1.src.main;
 
-import src.avion.Ala;
+import UVA1.src.avion.Ala;
 
 public class PruebaAla {
     public static void main(String[] args) {

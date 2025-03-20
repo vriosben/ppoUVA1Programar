@@ -1,9 +1,9 @@
-package src.main;
+package UVA1.src.main;
 
-import src.avion.Ala;
-import src.avion.Avion;
-import src.avion.MotorAvion;
-import src.avion.SistemaControlVuelo;
+import UVA1.src.avion.Ala;
+import UVA1.src.avion.Avion;
+import UVA1.src.avion.MotorAvion;
+import UVA1.src.avion.SistemaControlVuelo;
 
 public class PruebaAvion {
     public static void main(String[] args) {

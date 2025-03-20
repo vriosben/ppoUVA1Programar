@@ -1,6 +1,6 @@
-package src.main;
+package UVA1.src.main;
 
-import src.avion.MotorAvion;
+import UVA1.src.avion.MotorAvion;
 
 public class PruebaMotorAvion {
     

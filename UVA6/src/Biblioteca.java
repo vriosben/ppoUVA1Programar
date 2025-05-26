@@ -192,6 +192,14 @@ public class Biblioteca {
         return null;
     }
     
+    public List<Usuario> getTodosLosUsuarios() {
+        return new ArrayList<>(usuarios);
+    }
+    
+    public boolean existeUsuario(String id) {
+        return buscarUsuario(id) != null;
+    }
+    
     /* -------------------- Métodos de Gestión de Préstamos -------------------- */
     
     public void prestarLibro(String isbn, String usuarioId) throws LibroNoEncontradoException, 

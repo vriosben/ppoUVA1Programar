@@ -1,9 +1,12 @@
-package UVA6.src;
+package UVA6.src.biblioteca;
 
 import javax.swing.*;
+
+import UVA6.src.excepciones.LibroExistenteException;
+import UVA6.src.excepciones.LibroNoDisponibleException;
+import UVA6.src.excepciones.LibroNoEncontradoException;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class BibliotecaGUI {
@@ -17,8 +20,23 @@ public class BibliotecaGUI {
     
     private void inicializarGUI() {
         frame = new JFrame("Sistema de Gestión de Biblioteca");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
+
+        // Para que se guarden los cambios al cerrar
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            if (JOptionPane.showConfirmDialog(frame, 
+                "¿Estás seguro de que quieres salir?", "Confirmar salida",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                
+                biblioteca.guardarDatos(); // Guarda explícitamente
+                System.exit(0); // Fuerza la salida
+                }
+            }
+        });
+
+        frame.setSize(600, 400);
         
         JPanel panel = new JPanel(new GridLayout(5, 1, 10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -42,32 +60,37 @@ public class BibliotecaGUI {
         panel.add(btnAdminUsuarios);
         
         frame.add(panel);
+        frame.setLocationRelativeTo(null); 
         frame.setVisible(true);
     }
     
     private void mostrarBuscarLibro() {
         JFrame buscarFrame = new JFrame("Buscar Libro");
-        buscarFrame.setSize(500, 300);
+        buscarFrame.setSize(500, 300); 
         
         JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
-        
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
         JTextField txtBusqueda = new JTextField();
         JButton btnBuscar = new JButton("Buscar");
         JTextArea txtResultados = new JTextArea();
         txtResultados.setEditable(false);
         
         btnBuscar.addActionListener(e -> {
-            String busqueda = txtBusqueda.getText();
+            String busqueda = txtBusqueda.getText().trim();
             List<Libro> resultados = biblioteca.buscarLibrosPorTitulo(busqueda);
             
             StringBuilder sb = new StringBuilder();
-            for (Libro libro : resultados) {
-                sb.append(libro.getTitulo()).append(" - ").append(libro.getAutor())
-                  .append(" (").append(libro.getCategoria()).append(") ")
-                  .append(libro.isDisponible() ? "Disponible" : "Prestado")
-                  .append("\n");
+            if (resultados.isEmpty()) {
+                sb.append("No se encontraron libros con el título: \"").append(busqueda).append("\"");
+            } else {
+                for (Libro libro : resultados) {
+                    sb.append(libro.getTitulo()).append(" - ").append(libro.getAutor())
+                    .append(" (").append(libro.getCategoria()).append(") ")
+                    .append(libro.isDisponible() ? "Disponible" : "Prestado")
+                    .append("\n");
+                }
             }
-            
             txtResultados.setText(sb.toString());
         });
         
@@ -77,6 +100,7 @@ public class BibliotecaGUI {
         panel.add(new JScrollPane(txtResultados));
         
         buscarFrame.add(panel);
+        buscarFrame.setLocationRelativeTo(frame); 
         buscarFrame.setVisible(true);
     }
     
@@ -124,6 +148,7 @@ public class BibliotecaGUI {
         panel.add(new JScrollPane(txtResultado));
         
         prestarFrame.add(panel);
+        prestarFrame.setLocationRelativeTo(frame); 
         prestarFrame.setVisible(true);
     }
         
@@ -164,6 +189,7 @@ public class BibliotecaGUI {
         panel.add(new JScrollPane(txtResultado));
         
         devolverFrame.add(panel);
+        devolverFrame.setLocationRelativeTo(frame); 
         devolverFrame.setVisible(true);
     }
     
@@ -236,6 +262,7 @@ public class BibliotecaGUI {
         tabbedPane.addTab("Listar Libros", panelListar);
         
         adminFrame.add(tabbedPane);
+        adminFrame.setLocationRelativeTo(frame); 
         adminFrame.setVisible(true);
     }
     
@@ -354,6 +381,7 @@ public class BibliotecaGUI {
         tabbedPane.addTab("Buscar Usuario", panelBuscar);
         
         adminUsuariosFrame.add(tabbedPane);
+        adminUsuariosFrame.setLocationRelativeTo(frame); 
         adminUsuariosFrame.setVisible(true);
     }
 }

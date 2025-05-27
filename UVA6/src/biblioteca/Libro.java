@@ -1,4 +1,4 @@
-package UVA6.src;
+package UVA6.src.biblioteca;
 
 public class Libro {
     // Atributos
@@ -8,13 +8,7 @@ public class Libro {
     private String isbn;
     private boolean disponible;
     
-    /**
-     * Constructor para crear un nuevo libro
-     * @param titulo Título del libro
-     * @param autor Autor del libro
-     * @param categoria Categoría/genro del libro
-     * @param isbn Número ISBN único del libro
-     */
+ 
     public Libro(String titulo, String autor, String categoria, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
@@ -23,7 +17,7 @@ public class Libro {
         this.disponible = true; // Por defecto, al crear un libro está disponible
     }
     
-    // Métodos de acceso (getters)
+    // Getters
     public String getTitulo() {
         return titulo;
     }
@@ -44,7 +38,7 @@ public class Libro {
         return disponible;
     }
     
-    // Métodos de modificación (setters)
+    // Setters
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -61,10 +55,6 @@ public class Libro {
         this.disponible = disponible;
     }
     
-    /**
-     * Método para obtener una representación en String del libro
-     * @return String con los datos del libro formateados
-     */
     @Override
     public String toString() {
         return String.format(
@@ -77,10 +67,7 @@ public class Libro {
         );
     }
     
-    /**
-     * Método para obtener representación CSV del libro (usado para guardar en archivo)
-     * @return String en formato CSV
-     */
+    //Método para obtener representación CSV del libro 
     public String toCSV() {
         return String.join(",",
             titulo,
@@ -91,11 +78,7 @@ public class Libro {
         );
     }
     
-    /**
-     * Método para comparar libros por ISBN
-     * @param obj Objeto a comparar
-     * @return true si los ISBN coinciden
-     */
+    //comparar libros por ISBN
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

@@ -1,18 +1,27 @@
-package UVA6.src;
+package UVA6.src.biblioteca;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import UVA6.src.excepciones.LibroExistenteException;
+import UVA6.src.excepciones.LibroNoDisponibleException;
+import UVA6.src.excepciones.LibroNoEncontradoException;
+import UVA6.src.excepciones.UsuarioNoEncontradoException;
 
 public class Biblioteca {
     private List<Libro> libros;
     private List<Usuario> usuarios;
     private List<Prestamo> prestamos;
     
-    private static final String ARCHIVO_LIBROS = "src/libros.dat";
-    private static final String ARCHIVO_USUARIOS = "src/usuarios.dat";
-    private static final String ARCHIVO_PRESTAMOS = "src/prestamos.dat";
+    // private static final String ARCHIVO_LIBROS = "libros.dat";
+    // private static final String ARCHIVO_USUARIOS = "usuarios.dat";
+    // private static final String ARCHIVO_PRESTAMOS = "prestamos.dat";
+    private static final String ARCHIVO_LIBROS = Paths.get("UVA6", "data", "libros.dat").toString();
+    private static final String ARCHIVO_USUARIOS = Paths.get("UVA6", "data", "usuarios.dat").toString();
+    private static final String ARCHIVO_PRESTAMOS = Paths.get("UVA6", "data", "prestamos.dat").toString();  
     
     public Biblioteca() {
         libros = new ArrayList<>();

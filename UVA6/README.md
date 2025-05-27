@@ -20,6 +20,6 @@ Se requiere desarrollar una aplicación de escritorio para la gestión de una bi
 - Administración de usuarios
 
 ### Requerimientos técnicos: 
-- Utilizar clases y objetos para modelar los datos y la lógica de la aplicación (libros, usuarios, transacciones de préstamo/devolución). 
+- Utilizar clases y objetos para modelar los datos y la lógica de la aplicación (libros, usuarios, transacciones de préstamo/devolución) . 
 - Implementar excepciones para manejar errores en la entrada de datos y operaciones de archivo. 
 - Aplicar principios de POO como encapsulación, herencia y polimorfismo donde sea pertinente. 

@@ -89,6 +89,25 @@ public class AgendaServicio {
         persistencia.guardarInscripciones(this.inscripciones);
     }
 
+    // Eliminar Eventos
+    public void eliminarEvento(UUID idEvento) throws AppException {
+
+        boolean removedFromList = this.eventos.removeIf(evento -> evento.getId().equals(idEvento));
+        if (removedFromList) {
+            // También elimina las inscripciones asociadas a este evento
+            this.inscripciones.removeIf(inscripcion -> inscripcion.getEventoId().equals(idEvento));
+
+            // Guarda los cambios en los archivos de persistencia
+            persistencia.guardarEventos(this.eventos);
+            persistencia.guardarInscripciones(this.inscripciones);
+            // No es necesario guardar asistentes a menos que la eliminación de un evento afecte directamente a los asistentes de alguna manera no cubierta por la eliminación de inscripciones
+            System.out.println("Evento con ID " + idEvento + " eliminado exitosamente.");
+        } else {
+            System.out.println("Evento con ID " + idEvento + " no encontrado para eliminar.");
+        }
+
+    }
+
     public List<Evento> getEventosDelDia(LocalDate fecha) {
         return eventos.stream()
                 .filter(e -> e.getFechaInicio().toLocalDate().equals(fecha))

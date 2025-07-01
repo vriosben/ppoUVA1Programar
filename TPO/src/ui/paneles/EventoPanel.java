@@ -34,6 +34,9 @@ public class EventoPanel extends JPanel {
     private JTextField txtNombreAsistente;
     private JTextField txtApellidoAsistente;
     private JTextField txtEmailAsistente;
+    
+    // Botón de eliminar
+    private JButton btnEliminar;
 
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -102,7 +105,12 @@ public class EventoPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton btnGuardar = new JButton("Guardar");
         JButton btnVolver = new JButton("Volver a la Agenda");
+        
+        btnEliminar = new JButton("Eliminar Evento"); // Nuevo botón de eliminar
+        btnEliminar.setVisible(false); // Inicialmente oculto
+
         buttonPanel.add(btnVolver);
+        buttonPanel.add(btnEliminar); // Añadir al panel de botones
         buttonPanel.add(btnGuardar);
         add(buttonPanel, BorderLayout.SOUTH);
         
@@ -110,6 +118,7 @@ public class EventoPanel extends JPanel {
         btnVolver.addActionListener(e -> mainFrame.cambiarVista("AGENDA"));
         btnGuardar.addActionListener(e -> guardarEvento());
         btnAddAsistente.addActionListener(e -> agregarAsistente());
+        btnEliminar.addActionListener(e -> eliminarEvento()); // Listener para el botón de eliminar
     }
     
     public void setEvento(Evento evento) {
@@ -123,6 +132,7 @@ public class EventoPanel extends JPanel {
             txtDescripcion.setText("");
             txtFechaInicio.setText(LocalDateTime.now().format(dtf));
             txtFechaFin.setText(LocalDateTime.now().plusHours(1).format(dtf));
+            btnEliminar.setVisible(false); // Ocultar botón eliminar para nuevos eventos
         } else {
             // Modo Edición
             this.eventoActual = evento;
@@ -132,6 +142,7 @@ public class EventoPanel extends JPanel {
             txtDescripcion.setText(evento.getDescripcion());
             txtFechaInicio.setText(evento.getFechaInicio().format(dtf));
             txtFechaFin.setText(evento.getFechaFin().format(dtf));
+            btnEliminar.setVisible(true); // Mostrar botón eliminar en modo edición
         }
         
         // Cargar la lista de asistentes
@@ -198,6 +209,29 @@ public class EventoPanel extends JPanel {
         }
     }
     
+    private void eliminarEvento() {
+        if (eventoActual != null && eventoActual.getId() != null) {
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "¿Está seguro de que desea eliminar este evento y todas sus inscripciones?",
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) { // Corregido: JOptionPane.YES_OPTION
+                try {
+                    agendaServicio.eliminarEvento(eventoActual.getId());
+                    JOptionPane.showMessageDialog(this, "Evento eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    mainFrame.cambiarVista("AGENDA"); // Volver a la vista de la agenda
+                } catch (AppException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el evento: " + ex.getMessage(), "Error de Eliminación", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace(); // Imprime el stack trace para depuración
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay un evento seleccionado para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+
     // Clase interna para renderizar los asistentes en la JList
     private static class AsistenteListCellRenderer extends DefaultListCellRenderer {
         @Override
